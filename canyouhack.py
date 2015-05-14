@@ -50,8 +50,6 @@ def green(text):
 def blue(text):
     return color(text, 34)
 
-
-
 #Get IP To SCAN
 if len(sys.argv) != 2:
     print("Error: specify an IP to connect to!")
@@ -60,12 +58,6 @@ if len(sys.argv) != 2:
 ip = sys.argv[1]
 
 checkip = sys.argv[1]
-
-#Welcome: 
-print 'Quickly Check Security For Exploitable Vulnerabilities For An IP'
-print 'A quick and dirty script by @jgamblin'
-print('\n')
-
 
 
 #Ignore TLS Cert Error
@@ -83,7 +75,7 @@ vulns = sc.query('vulndetails', exploitAvailable='true', pluginType='active', se
 # Set IP Address:
 ips ={}
 if not vulns:
-    print 'You Probably Cant Hack %. Congrats!  : )'  %ip
+    print '\nYou Probably Cant Hack %s. Congrats!  : ) \n' % ip
 else:
     for vuln in vulns:
         if vuln['ip'] not in ips:
@@ -93,7 +85,7 @@ else:
 # Now to print the output to the screen.  This could easily be rewritten to
 # output to a file as well, or even parse it into a CSV file if needed.
 for ip in ips:
-    print 'Yep, you can hack %. Here is how:' %ip
+    print 'Yep, you can hack %s. \nHere is how:' %ip
     print '\n'
     for vuln in ips[ip]:
 	print '%s' % vuln['pluginName']
